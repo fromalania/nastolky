@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<title>Магазин авторских настольных игр «Игровая Лавка» — авторские игры для компании</title>
-<meta name="description" content="«Игровая Лавка» — магазин авторских настольных игр для компаний 2–6 человек. Популярные игры, фильтры по количеству игроков и времени партии, удобный каталог. Учебный проект по оптимизации веб-приложения.">
-<link rel="stylesheet" href="css/style.css"
-<title>Каталог авторских настольных игр — «Игровая Лавка»</title>
-<meta name="description" content="Каталог авторских настольных игр: кооперативные, семейные и стратегические игры. Фильтры по количеству игроков и времени партии. Учебный проект по оптимизации веб-приложения.">
+    <meta charset="UTF-8">
+    <title>Магазин авторских настольных игр «Игровая Лавка»</title>
+    <meta name="description"
+          content="«Игровая Лавка» — учебный магазин авторских настольных игр. Популярные игры, удобный каталог, фильтры по количеству игроков и времени партии. Проект для практики по оптимизации веб-приложения.">
+    <link rel="canonical" href="https://fromalania.github.io/nastolky/настолки/index.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#111827">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
 </head>
 <body>
+<a class="skip-link" href="#main">Перейти к основному содержимому</a>
+
 <header class="header">
     <div class="container header__inner">
-        <div class="logo">Игровая&nbsp;Лавка</div>
-        <nav class="nav">
+        <a href="index.html" class="logo">Игровая Лавка</a>
+        <nav class="nav" aria-label="Основная навигация">
             <a href="index.html" class="nav__link nav__link--active">Главная</a>
             <a href="catalog.html" class="nav__link">Каталог</a>
             <a href="about.html" class="nav__link">Об авторе</a>
@@ -20,66 +26,84 @@
     </div>
 </header>
 
-<main>
+<main id="main">
     <section class="hero">
         <div class="container hero__inner">
-            <div class="hero__text">
-                <h1>Авторские настольные игры<br>для душевных вечеров</h1>
-                <p>Оригинальные сюжеты, тактильные компоненты и продуманная механика — всё,
-                    чтобы ваши встречи с друзьями и семьёй стали особенными.</p>
-                <a href="catalog.html" class="btn btn--primary">Перейти в каталог</a>
+            <div class="hero__content">
+                <p class="eyebrow">Игровая Лавка</p>
+                <h1 class="hero__title">Авторские настольные игры<br>для душевных вечеров</h1>
+                <p class="hero__subtitle">
+                    Оригинальные сюжеты, тактильные компоненты и продуманная механика — всё, чтобы ваши встречи
+                    с друзьями и семьёй стали особенными.
+                </p>
+                <div class="hero__actions">
+                    <a href="catalog.html" class="btn btn--primary">Перейти в каталог</a>
+                    <button class="btn btn--ghost" data-scroll-to="#popular">Смотреть популярные</button>
+                </div>
             </div>
-            <div class="hero__info">
-                <ul class="hero__benefits">
-                    <li>Небольшие тиражи и уникальный арт</li>
-                    <li>Поддержка независимых авторов</li>
-                    <li>Игры для компании от 2 до 6 человек</li>
-                    <li>Среднее время партии 30–90 минут</li>
-                </ul>
-            </div>
+            <ul class="hero__bullets" aria-label="Преимущества магазина">
+                <li>Небольшие тиражи и уникальный арт</li>
+                <li>Поддержка независимых авторов</li>
+                <li>Игры для компаний от 2 до 6 человек</li>
+                <li>Среднее время партии 30–90 минут</li>
+            </ul>
         </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="popular">
         <div class="container">
-            <h2 class="section__title">Популярные игры</h2>
-            <div class="cards">
-                <article class="card">
+            <header class="section__header">
+                <h2 class="section__title">Популярные игры</h2>
+                <p class="section__subtitle">Несколько примеров из каталога учебного проекта.</p>
+            </header>
+
+            <div class="grid-3 cards" data-role="card-list">
+                <article class="card"
+                         data-product-id="misty-archipelago"
+                         data-players="3-5"
+                         data-time="60-90">
                     <h3 class="card__title">Туманный Архипелаг</h3>
-                    <p class="card__meta">3–5 игроков • 60–90 минут • 14+</p>
+                    <p class="card__meta">3–5 игроков · 60–90 минут · 14+</p>
                     <p class="card__text">
-                        Кооперативная игра про исследование туманных островов и поиски артефактов.
+                        Кооперативная игра про исследование туманных островов и поиск артефактов.
                         Игроки принимают общие решения и строят маршрут экспедиции.
                     </p>
                     <div class="card__footer">
-                        <span class="card__price">3 490 ₽</span>
-                        <button class="btn btn--outline" data-product="Туманный Архипелаг">В корзину</button>
+                        <p class="card__price">3 490 ₽</p>
+                        <button class="btn btn--secondary" data-add-to-cart>В корзину</button>
                     </div>
                 </article>
 
-                <article class="card">
-                    <h3 class="card__title">Город Без Времени</h3>
-                    <p class="card__meta">2–4 игрока • 45–60 минут • 12+</p>
+                <article class="card"
+                         data-product-id="city-out-of-time"
+                         data-players="2-4"
+                         data-time="45-60">
+                    <h3 class="card__title">Город вне времени</h3>
+                    <p class="card__meta">2–4 игрока · 45–60 минут · 12+</p>
                     <p class="card__text">
-                        Евро-стратегия о городе, в котором остановилось время. Продуманный выбор действий и
-                        построение комбинаций приносят победные очки.
+                        Евро-стратегия о городе, в котором остановилось время.
+Балансируйте экономику,
+                        влиятельность районов и действия персонажей.
                     </p>
                     <div class="card__footer">
-                        <span class="card__price">2 990 ₽</span>
-                        <button class="btn btn--outline" data-product="Город Без Времени">В корзину</button>
+                        <p class="card__price">2 990 ₽</p>
+                        <button class="btn btn--secondary" data-add-to-cart>В корзину</button>
                     </div>
                 </article>
 
-                <article class="card">
-                    <h3 class="card__title">Лисьи Тропы</h3>
-                    <p class="card__meta">2–6 игроков • 30–45 минут • 8+</p>
+                <article class="card"
+                         data-product-id="fox-trails"
+                         data-players="2-6"
+                         data-time="30-45">
+                    <h3 class="card__title">Лисьи тропы</h3>
+                    <p class="card__meta">2–6 игроков · 30–45 минут · 8+</p>
                     <p class="card__text">
-                        Семейная игра с простыми правилами, где игроки проводят лис через лес,
-                        собирая ягоды и избегая ловушек.
+                        Семейная игра с простыми правилами, где игроки проводят лисиц через лес,
+                        собирая ягоды и избегая опасностей.
                     </p>
                     <div class="card__footer">
-                        <span class="card__price">1 990 ₽</span>
-                        <button class="btn btn--outline" data-product="Лисьи Тропы">В корзину</button>
+                        <p class="card__price">1 990 ₽</p>
+                        <button class="btn btn--secondary" data-add-to-cart>В корзину</button>
                     </div>
                 </article>
             </div>
@@ -87,36 +111,35 @@
     </section>
 
     <section class="section section--muted">
-        <div class="container">
-            <h2 class="section__title">Почему мы уделяем внимание оптимизации</h2>
-            <div class="grid-2">
-                <div>
-                    <h3>Быстрая загрузка</h3>
-                    <p>
-                        Сайт построен на лёгкой вёрстке: минимальное количество скриптов и стилей,
-                        сжатые изображения и кэширование позволяют быстро открыть каталог даже
-                        при нестабильном интернете.
-                    </p>
-                </div>
-                <div>
-                    <h3>Удобство на мобильных устройствах</h3>
-                    <p>
-                        Адаптивный дизайн, крупные кнопки и читаемые заголовки — покупка игры
-                        с телефона не вызывает сложностей.
-                    </p>
-                </div>
+        <div class="container grid-2">
+            <div>
+                <h2 class="section__title">Оптимизация как часть учебного проекта</h2>
+                <p>
+                    Этот сайт разработан специально для практики. На его основе можно отрабатывать приёмы SEO,
+                    оптимизации скорости, улучшения юзабилити и настройки аналитики.
+                </p>
+                <p>
+                    В отчёте по практике фиксируются изменения в мета-тегах, структуре страниц, скорости
+                    загрузки и удобстве интерфейса.
+                </p>
             </div>
+            <ul class="checklist">
+                <li>Адаптивная вёрстка</li>
+                <li>Одна точка входа для стилей и скриптов</li>
+                <li>Чистые URL внутри проекта</li>
+                <li>Готовность к подключению веб-аналитики</li>
+            </ul>
         </div>
     </section>
 </main>
 
 <footer class="footer">
     <div class="container footer__inner">
-        <span>© 2025 Магазин «Игровая Лавка». Учебный проект.</span>
-        <span class="footer__note">Сайт разработан для учебной практики по теме оптимизации веб‑приложения.</span>
+        <p>© 2025 «Игровая Лавка». Учебный проект.</p>
+        <p class="footer__note">
+            Функция «В корзину» демонстрационная и используется только для учебных целей.
+        </p>
     </div>
 </footer>
-
-<script src="js/main.js" defer></script>
 </body>
 </html>
