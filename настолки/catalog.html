@@ -2,16 +2,22 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Каталог — Игровая Лавка</title>
+    <title>Каталог авторских настольных игр — «Игровая Лавка»</title>
+    <meta name="description"
+          content="Каталог авторских настольных игр: кооперативные, семейные и стратегические игры. Фильтры по количеству игроков и времени партии. Учебный проект по оптимизации веб-приложения.">
+    <link rel="canonical" href="https://fromalania.github.io/nastolky/настолки/catalog.html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Каталог авторских настольных игр.">
+    <meta name="theme-color" content="#111827">
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
 </head>
 <body>
+<a class="skip-link" href="#main">Перейти к основному содержимому</a>
+
 <header class="header">
     <div class="container header__inner">
-        <div class="logo">Игровая&nbsp;Лавка</div>
-        <nav class="nav">
+        <a href="index.html" class="logo">Игровая Лавка</a>
+        <nav class="nav" aria-label="Основная навигация">
             <a href="index.html" class="nav__link">Главная</a>
             <a href="catalog.html" class="nav__link nav__link--active">Каталог</a>
             <a href="about.html" class="nav__link">Об авторе</a>
@@ -20,91 +26,133 @@
     </div>
 </header>
 
-<main class="section">
+<main id="main" class="section">
     <div class="container">
-        <h1 class="section__title">Каталог игр</h1>
+        <header class="section__header">
+            <h1 class="section__title">Каталог игр</h1>
+            <p class="section__subtitle">
+                Используйте фильтры по количеству игроков и времени партии. Это также пример
+                клиентской логики для учебного анализа.
+            </p>
+        </header>
 
-        <div class="filters">
-            <label class="filters__item">
-                Количество игроков:
+        <section class="filters" aria-label="Фильтрация игр">
+            <div class="filters__item">
+                <label for="playersFilter">Количество игроков:</label>
                 <select id="playersFilter">
-                    <option value="all">Все</option>
+                    <option value="all">Любое</option>
                     <option value="2-4">2–4</option>
                     <option value="3-5">3–5</option>
                     <option value="2-6">2–6</option>
                 </select>
-            </label>
-            <label class="filters__item">
-                Время партии:
+            </div>
+            <div class="filters__item">
+                <label for="timeFilter">Время партии:</label>
                 <select id="timeFilter">
                     <option value="all">Любое</option>
                     <option value="30-45">30–45 минут</option>
                     <option value="45-60">45–60 минут</option>
                     <option value="60-90">60–90 минут</option>
                 </select>
-            </label>
-        </div>
+            </div>
+            <button class="btn btn--ghost filters__reset" id="resetFilters" type="button">
+                Сбросить фильтры
+            </button>
+        </section>
 
-        <div class="cards" id="catalogList">
-            <article class="card" data-players="3-5" data-time="60-90">
+        <div class="grid-3 cards" data-role="card-list" id="catalogList">
+            <article class="card"
+                     data-product-id="misty-archipelago"
+                     data-players="3-5"
+                     data-time="60-90">
                 <h2 class="card__title">Туманный Архипелаг</h2>
-                <p class="card__meta">3–5 игроков • 60–90 минут • 14+</p>
+                <p class="card__meta">3–5 игроков · 60–90 минут · 14+</p>
                 <p class="card__text">
-                    Кооперативная приключенческая игра с модульным полем и системой событий.
+                    Кооперативная игра про исследование туманных островов и поиск артефактов.
+                    Игроки принимают общие решения и строят маршрут экспедиции.
                 </p>
                 <div class="card__footer">
-                    <span class="card__price">3 490 ₽</span>
-                    <button class="btn btn--outline" data-product="Туманный Архипелаг">В корзину</button>
+                    <p class="card__price">3 490 ₽</p>
+                    <button class="btn btn--secondary" data-add-to-cart>В корзину</button>
                 </div>
             </article>
 
-            <article class="card" data-players="2-4" data-time="45-60">
-                <h2 class="card__title">Город Без Времени</h2>
-                <p class="card__meta">2–4 игрока • 45–60 минут • 12+</p>
+            <article class="card"
+                     data-product-id="city-out-of-time"
+                     data-players="2-4"
+                     data-time="45-60">
+                <h2 class="card__title">Город вне времени</h2>
+                <p class="card__meta">2–4 игрока · 45–60 минут · 12+</p>
                 <p class="card__text">
-                    Тактическая евро‑стратегия с упором на планирование ходов и
-                    создание движка действий.
-                </p>
+                    Евро-стратегия о городе, в котором остановилось время. Балансируйте экономику,
+                    влиятельность районов и действия персонажей.
+</p>
                 <div class="card__footer">
-                    <span class="card__price">2 990 ₽</span>
-                    <button class="btn btn--outline" data-product="Город Без Времени">В корзину</button>
+                    <p class="card__price">2 990 ₽</p>
+                    <button class="btn btn--secondary" data-add-to-cart>В корзину</button>
                 </div>
             </article>
 
-            <article class="card" data-players="2-6" data-time="30-45">
-                <h2 class="card__title">Лисьи Тропы</h2>
-                <p class="card__meta">2–6 игроков • 30–45 минут • 8+</p>
+            <article class="card"
+                     data-product-id="fox-trails"
+                     data-players="2-6"
+                     data-time="30-45">
+                <h2 class="card__title">Лисьи тропы</h2>
+                <p class="card__meta">2–6 игроков · 30–45 минут · 8+</p>
                 <p class="card__text">
-                    Семейная игра с картами маршрутов, сбором набора и простым подсчётом очков.
+                    Семейная игра с простыми правилами, где игроки проводят лисиц через лес,
+                    собирая ягоды и избегая опасностей.
                 </p>
                 <div class="card__footer">
-                    <span class="card__price">1 990 ₽</span>
-                    <button class="btn btn--outline" data-product="Лисьи Тропы">В корзину</button>
+                    <p class="card__price">1 990 ₽</p>
+                    <button class="btn btn--secondary" data-add-to-cart>В корзину</button>
                 </div>
             </article>
 
-            <article class="card" data-players="2-4" data-time="30-45">
-                <h2 class="card__title">Кофейная Стратегия</h2>
-                <p class="card__meta">2–4 игрока • 30–45 минут • 10+</p>
+            <article class="card"
+                     data-product-id="night-market"
+                     data-players="2-4"
+                     data-time="60-90">
+                <h2 class="card__title">Ночной рынок</h2>
+                <p class="card__meta">2–4 игрока · 60–90 минут · 13+</p>
                 <p class="card__text">
-                    Карточная игра о маленьких кофейнях, где нужно балансировать
-                    между качеством зерна, скоростью обслуживания и репутацией.
+                    Атмосферная игра о ночном рынке в азиатском мегаполисе. Планируйте маршруты,
+                    торгуйтесь с покупателями и расширяйте лавку.
                 </p>
                 <div class="card__footer">
-                    <span class="card__price">2 190 ₽</span>
-                    <button class="btn btn--outline" data-product="Кофейная Стратегия">В корзину</button>
+                    <p class="card__price">3 190 ₽</p>
+                    <button class="btn btn--secondary" data-add-to-cart>В корзину</button>
+                </div>
+            </article>
+
+            <article class="card"
+                     data-product-id="time-garden"
+                     data-players="1-2"
+                     data-time="30-45">
+                <h2 class="card__title">Сад времени</h2>
+                <p class="card__meta">1–2 игрока · 30–45 минут · 10+</p>
+                <p class="card__text">
+                    Медитативная игра-головоломка, где игроки выращивают сад, управляя временем года
+                    и солнечным светом.
+                </p>
+                <div class="card__footer">
+                    <p class="card__price">1 690 ₽</p>
+                    <button class="btn btn--secondary" data-add-to-cart>В корзину</button>
                 </div>
             </article>
         </div>
+
+        <p class="section__note">
+            Фильтры и кнопка «В корзину» работают на стороне клиента и используются для учебного анализа
+            поведения пользователей (нажатия, изменение фильтров и т.д.).
+        </p>
     </div>
 </main>
 
 <footer class="footer">
     <div class="container footer__inner">
-        <span>© 2025 Магазин «Игровая Лавка». Учебный проект.</span>
+        <p>© 2025 «Игровая Лавка». Учебный проект.</p>
     </div>
 </footer>
-
-<script src="js/main.js" defer></script>
 </body>
 </html>
