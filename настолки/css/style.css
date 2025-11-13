@@ -1,14 +1,19 @@
+/* Базовые настройки */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: #f3f4f6;
     color: #111827;
-    background-color: #f9fafb;
     line-height: 1.5;
 }
 
@@ -22,19 +27,56 @@ a {
     text-decoration: none;
 }
 
-.container {
-    max-width: 1120px;
-    padding: 0 16px;
-    margin: 0 auto;
+a:hover {
+    text-decoration: underline;
 }
 
-/* Header */
+button {
+    font: inherit;
+}
+
+/* Контейнеры и сетки */
+
+.container {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 32px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+/* Ссылка пропуска к контенту */
+
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    padding: 8px 12px;
+    background: #fbbf24;
+    color: #111827;
+    z-index: 1000;
+}
+
+.skip-link:focus {
+    left: 16px;
+    top: 16px;
+}
+
+/* Шапка */
 
 .header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background-color: #111827;
+    background: #111827;
     color: #f9fafb;
 }
 
@@ -42,30 +84,36 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 0;
+    padding: 14px 0;
+    gap: 24px;
 }
 
 .logo {
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 18px;
+    white-space: nowrap;
 }
 
 .nav {
     display: flex;
     gap: 16px;
     font-size: 14px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 .nav__link {
     padding: 6px 10px;
     border-radius: 999px;
-    transition: background-color 0.15s ease, color 0.15s ease;
+    border: 1px solid transparent;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
 .nav__link:hover {
-    background-color: #374151;
+    background-color: #f9fafb;
+    color: #111827;
 }
 
 .nav__link--active {
@@ -73,43 +121,112 @@ a {
     color: #111827;
 }
 
+/* Кнопки */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.btn:focus-visible {
+    outline: 2px solid #fbbf24;
+    outline-offset: 2px;
+}
+
+.btn--primary {
+    background-color: #fbbf24;
+    color: #111827;
+}
+
+.btn--primary:hover {
+    background-color: #f59e0b;
+}
+
+.btn--secondary {
+    background-color: #111827;
+    color: #f9fafb;
+}
+
+.btn--secondary:hover {
+    background-color: #020617;
+}
+
+.btn--ghost {
+    background-color: transparent;
+    color: #111827;
+    border-color: #d1d5db;
+}
+
+.btn--ghost:hover {
+    background-color: #e5e7eb;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
 /* Hero */
 
 .hero {
-    padding: 40px 0 32px;
-    background: radial-gradient(circle at top left, #111827 0, #111827 40%, #1f2937 60%, #111827 100%);
+    background: radial-gradient(circle at top left, #1f2937 0, #020617 60%);
     color: #f9fafb;
+    padding: 40px 0 32px;
 }
 
 .hero__inner {
     display: grid;
-    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
     gap: 32px;
     align-items: center;
 }
 
-.hero h1 {
-    font-size: clamp(24px, 4vw, 32px);
+.eyebrow {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin: 0 0 8px;
+}
+
+.hero__title {
+    font-size: 32px;
     margin: 0 0 12px;
 }
 
-.hero p {
-    margin: 0 0 16px;
+.hero__subtitle {
+    margin: 0 0 20px;
+    max-width: 480px;
     color: #e5e7eb;
 }
 
-.hero__benefits {
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.hero__bullets {
+    list-style: none;
+    padding: 0;
     margin: 0;
-    padding-left: 18px;
     font-size: 14px;
-    color: #e5e7eb;
+    display: grid;
+    gap: 8px;
 }
 
-.hero__benefits li + li {
-    margin-top: 6px;
+.hero__bullets li::before {
+    content: "• ";
+    color: #fbbf24;
 }
 
-/* Sections */
+/* Секции */
 
 .section {
     padding: 32px 0;
@@ -119,36 +236,40 @@ a {
     background-color: #e5e7eb;
 }
 
+.section__header {
+    margin-bottom: 20px;
+}
+
 .section__title {
-    margin: 0 0 20px;
-    font-size: 22px;
+    margin: 0 0 8px;
+    font-size: 24px;
 }
 
-.subtitle {
-    margin: 0 0 12px;
-    font-size: 18px;
+.section__subtitle {
+    margin: 0;
+    color: #4b5563;
 }
 
-.grid-2 {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    gap: 24px;
+.section__note {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #4b5563;
 }
+
+/* Карточки игр */
 
 .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 16px;
+    margin-top: 16px;
 }
 
 .card {
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 16px 16px 14px;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    background-color: #f9fafb;
+    border-radius: 16px;
+    padding: 18px;
+box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
 }
 
 .card__title {
@@ -165,109 +286,87 @@ a {
 .card__text {
     margin: 4px 0 0;
     font-size: 14px;
+    color: #374151;
 }
 
 .card__footer {
-    margin-top: 10px;
+    margin-top: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
+    gap: 12px;
 }
 
 .card__price {
+    margin: 0;
     font-weight: 600;
 }
 
-/* Buttons */
+/* Списки */
 
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 14px;
-    border-radius: 999px;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease, color 0.15s ease;
+.checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
 }
 
-.btn:active {
-    transform: translateY(1px);
-    box-shadow: none;
+.checklist li::before {
+    content: "✓ ";
+    color: #10b981;
 }
-
-.btn--primary {
-    background-color: #fbbf24;
-    color: #111827;
-    box-shadow: 0 6px 16px rgba(217, 119, 6, 0.35);
-}
-
-.btn--primary:hover {
-    background-color: #f59e0b;
-}
-
-.btn--outline {
-    border: 1px solid #d1d5db;
-    background-color: #ffffff;
-}
-
-.btn--outline:hover {
-    background-color: #f3f4f6;
-}
-
-/* Lists */
 
 .list {
-    margin: 0;
     padding-left: 18px;
-    font-size: 14px;
 }
 
-.list li + li {
-    margin-top: 4px;
-}
-
-.list--ordered {
-    padding-left: 20px;
-}
-
-/* Filters */
+/* Фильтры */
 
 .filters {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
     font-size: 14px;
+    padding: 12px 14px;
+    background-color: #f3f4f6;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.filters__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .filters__item select {
-    margin-left: 6px;
-    padding: 4px 8px;
+    padding: 6px 10px;
     border-radius: 999px;
     border: 1px solid #d1d5db;
-    font-size: 14px;
     background-color: #ffffff;
 }
 
-/* Form */
+.filters__reset {
+    margin-left: auto;
+}
+
+/* Формы */
 
 .form {
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 16px;
-    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+    background-color: #f9fafb;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
 }
 
 .form__field {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
+    margin-bottom: 12px;
     font-size: 14px;
-    margin-bottom: 10px;
 }
 
 .form__field input,
@@ -275,61 +374,93 @@ a {
     padding: 8px 10px;
     border-radius: 8px;
     border: 1px solid #d1d5db;
-    font-family: inherit;
-    font-size: 14px;
+    font: inherit;
 }
 
-.form__field input:focus,
-.form__field textarea:focus {
-    outline: none;
-    border-color: #fbbf24;
-    box-shadow: 0 0 0 1px #facc15;
+.form__field input:focus-visible,
+.form__field textarea:focus-visible {
+    outline: 2px solid #fbbf24;
+    outline-offset: 2px;
 }
 
 .form__note {
     font-size: 13px;
+    color: #4b5563;
     margin-top: 8px;
-    min-height: 18px;
 }
 
-/* Footer */
+/* Подвал */
 
 .footer {
-    border-top: 1px solid #e5e7eb;
-    padding: 14px 0 18px;
+    padding: 20px 0;
+    background-color: #111827;
+    color: #9ca3af;
     font-size: 13px;
-    background-color: #f9fafb;
 }
 
 .footer__inner {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .footer__note {
-    color: #6b7280;
+    max-width: 480px;
 }
 
-/* Responsive */
+/* Адаптив */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .hero__inner {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .grid-2 {
         grid-template-columns: minmax(0, 1fr);
     }
+}
 
-    .nav {
-        font-size: 13px;
-        gap: 8px;
+@media (max-width: 768px) {
+    .header__inner {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .header__inner {
-        gap: 10px;
+    .nav {
+        justify-content: flex-start;
+    }
+
+    .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .hero {
+        padding-top: 24px;
+    }
+
+    .hero__title {
+        font-size: 24px;
+    }
+
+    .card__text {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .card {
+        padding: 14px;
+    }
+
+    .filters {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filters__reset {
+        margin-left: 0;
     }
 }
