@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Об авторе — Игровая Лавка</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Информация об авторе настольных игр и учебного проекта.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="header">
+    <div class="container header__inner">
+        <div class="logo">Игровая&nbsp;Лавка</div>
+        <nav class="nav">
+            <a href="index.html" class="nav__link">Главная</a>
+            <a href="catalog.html" class="nav__link">Каталог</a>
+            <a href="about.html" class="nav__link nav__link--active">Об авторе</a>
+            <a href="contacts.html" class="nav__link">Контакты</a>
+        </nav>
+    </div>
+</header>
+
+<main class="section">
+    <div class="container">
+        <h1 class="section__title">Об авторе проекта</h1>
+        <div class="grid-2">
+            <div>
+                <p>
+                    Этот сайт разработан в рамках учебной практики по теме
+                    «Запуск проекта по оптимизации веб‑приложения. Магазин авторских настольных игр».
+                </p>
+                <p>
+                    Основные акценты проекта:
+                </p>
+                <ul class="list">
+                    <li>понятная структура страниц (главная, каталог, информация, контакты);</li>
+                    <li>лёгкая иерархия заголовков для SEO и доступности;</li>
+                    <li>минимальное количество блоков, отвлекающих пользователя от каталога;</li>
+                    <li>подготовка интерфейса к дальнейшей технической оптимизации (кэширование, минификация и т. д.).</li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="subtitle">Какие задачи оптимизации можно добавить</h2>
+                <ol class="list list--ordered">
+                    <li>Подключить минифицированные версии CSS и JS.</li>
+                    <li>Сгенерировать фавикон и добавить манифест для PWA.</li>
+                    <li>Реализовать загрузку изображений с атрибутом <code>loading="lazy"</code>.</li>
+                    <li>Настроить сжатие gzip/brotli на стороне сервера.</li>
+                    <li>Добавить базовую аналитику для оценки скорости загрузки и поведения пользователей.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container footer__inner">
+        <span>© 2025 Магазин «Игровая Лавка». Учебный проект.</span>
+    </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
