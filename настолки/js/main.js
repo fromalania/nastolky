@@ -1,47 +1,108 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const cartButtons = document.querySelectorAll('[data-product]');
-    const playersFilter = document.getElementById('playersFilter');
-    const timeFilter = document.getElementById('timeFilter');
-    const catalogList = document.getElementById('catalogList');
-    const contactForm = document.getElementById('contactForm');
-    const formNote = document.getElementById('formNote');
+document.addEventListener('DOMContentLoaded', () => {
+    setupSmoothScroll();
+    setupAddToCart();
+    setupFilters();
+    setupContactForm();
+});
 
-    // Имитация добавления в корзину (без бэкенда)
-    cartButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const product = button.getAttribute('data-product');
-            alert('Игра «' + product + '» добавлена в учебную корзину.');
+/**
+ * Плавный скролл по кнопке "Смотреть популярные"
+ */
+function setupSmoothScroll() {
+    const buttons = document.querySelectorAll('[data-scroll-to]');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetSelector = btn.getAttribute('data-scroll-to');
+            const target = document.querySelector(targetSelector);
+            if (target) {
+                target.scrollIntoView({behavior: 'smooth'});
+            }
         });
     });
+}
 
-    // Фильтрация каталога по количеству игроков и времени партии
+/**
+ * Имитация добавления в корзину
+ */
+function setupAddToCart() {
+    document.body.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-add-to-cart]');
+        if (!button) return;
+
+        const card = button.closest('.card');
+        const title = card?.querySelector('.card__title')?.textContent?.trim() || 'Игра';
+
+        alert('«' + title + '» добавлена в учебную корзину.\n\nВ реальном проекте здесь будет переход к оформлению заказа.');
+    });
+}
+
+/**
+ * Фильтры каталога
+ */
+function setupFilters() {
+    const playersSelect = document.querySelector('#playersFilter');
+    const timeSelect = document.querySelector('#timeFilter');
+    const resetButton = document.querySelector('#resetFilters');
+    const cards = Array.from(document.querySelectorAll('#catalogList .card'));
+
+    if (!playersSelect  !timeSelect  !cards.length) {
+        return;
+    }
+
     function applyFilters() {
-        if (!catalogList || !playersFilter || !timeFilter) return;
+        const playersFilter = playersSelect.value;
+        const timeFilter = timeSelect.value;
 
-        const playersValue = playersFilter.value;
-        const timeValue = timeFilter.value;
-
-        catalogList.querySelectorAll('.card').forEach(card => {
+        cards.forEach(card => {
             const cardPlayers = card.getAttribute('data-players');
             const cardTime = card.getAttribute('data-time');
 
-            const byPlayers = (playersValue === 'all' || cardPlayers === playersValue);
-            const byTime = (timeValue === 'all' || cardTime === timeValue);
+            const matchesPlayers = playersFilter === 'all' || playersFilter === cardPlayers;
+            const matchesTime = timeFilter === 'all' || timeFilter === cardTime;
 
-            card.style.display = (byPlayers && byTime) ? '' : 'none';
+            card.style.display = (matchesPlayers && matchesTime) ? '' : 'none';
         });
     }
 
-    if (playersFilter && timeFilter) {
-        playersFilter.addEventListener('change', applyFilters);
-        timeFilter.addEventListener('change', applyFilters);
-    }
+    playersSelect.addEventListener('change', applyFilters);
+    timeSelect.addEventListener('change', applyFilters);
 
-    // Имитация отправки формы обратной связи
-    if (contactForm && formNote) {
-        contactForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            formNote.textContent = 'Спасибо! Сообщение отправлено (на самом деле нет, это учебный пример).';
+    if (resetButton) {
+        resetButton.addEventListener('click', () => {
+            playersSelect.value = 'all';
+            timeSelect.value = 'all';
+            applyFilters();
         });
     }
-});
+
+    applyFilters();
+}
+
+/**
+ * Форма обратной связи
+ */
+function setupContactForm() {
+    const form = document.querySelector('#contactForm');
+    const note = document.querySelector('#formNote');
+
+    if (!form || !note) return;
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const name = (formData.get('name') || '').toString().trim();
+        const email = (formData.get('email') || '').toString().trim();
+        const message = (formData.get('message') || '').toString().trim();
+
+        if (!name  !email  !message) {
+            note.textContent = 'Пожалуйста, заполните все обязательные поля.';
+            note.style.color = '#b91c1c';
+            return;
+        }
+
+        note.textContent = 'Сообщение отправлено (демо). В учебном проекте данные не сохраняются.';
+        note.style.color = '#047857';
+        form.reset();
+    });
+}
