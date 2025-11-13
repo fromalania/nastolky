@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fromalania.github.io/nastolky/sitemap.xml
